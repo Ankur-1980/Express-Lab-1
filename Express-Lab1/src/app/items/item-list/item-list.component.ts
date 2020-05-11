@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Item } from 'src/app/interfaces/item';
 import { ItemService } from 'src/app/services/item.service';
 import { Subscription } from 'rxjs';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-item-list',
@@ -11,6 +12,7 @@ import { Subscription } from 'rxjs';
 export class ItemListComponent implements OnInit, OnDestroy {
   items: Item[] = [];
   private itemsSub: Subscription;
+  filterForm: FormGroup;
 
   constructor(public itemService: ItemService) {}
 
@@ -21,10 +23,20 @@ export class ItemListComponent implements OnInit, OnDestroy {
       .subscribe((items: Item[]) => {
         this.items = items;
       });
+
+    this.filterForm = new FormGroup({
+      prefix: new FormControl(),
+      pageSize: new FormControl(),
+      maxPrice: new FormControl(null, { validators: [Validators.min(0)] }),
+    });
   }
 
   onDelete(itemId: string) {
     this.itemService.deleteItem(itemId);
+  }
+
+  filterList() {
+    alert('working?');
   }
 
   ngOnDestroy() {

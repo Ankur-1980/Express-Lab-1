@@ -1,3 +1,26 @@
+<mat-card>
+  <form action="" [formGroup]="filterForm" (submit)="filterList()">
+    <div class="form-group">
+      <label for="maxPrice">Max Price</label>
+      <input type="number" formControlName="maxPrice" id="maxPrice" min="1" />
+    </div>
+    <div class="form-group">
+      <label for="pageSize">Items per Page</label>
+      <select id="pageSize" formControlName="pageSize">
+        <option value=""></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="prefix">Filter by Prefix</label>
+      <select id="prefix" formControlName="prefix">
+        <option value="bar">Bar</option>
+        <option value="server">Server</option>
+      </select>
+    </div>
+    <button mat-raised-button type="submit"></button>
+  </form>
+</mat-card>
+
 <div class="container mt-4" *ngIf="items.length > 0">
   <mat-card *ngFor="let item of items">
     <mat-card-header>
