@@ -88,7 +88,7 @@ export class ItemService {
 
   filterItems(filterForm) {
     this.http
-      .get(`http://localhost:3000/api/cart-items/search?${filterForm}`)
+      .get(`http://localhost:3000/api/cart-items/search`)
       .subscribe((response) => {
         console.log(response);
       });

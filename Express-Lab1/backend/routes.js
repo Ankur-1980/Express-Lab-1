@@ -29,6 +29,13 @@ router.get("/:id", (req, res) => {
 // search filter
 router.get("/search", (req, res, next) => {
   console.log("query", req.query);
+  const filterValue = {
+    prefix: req.query.prefix,
+    pageSize: req.query.pageSize,
+    maxPrice: req.query.maxPrice,
+  };
+
+  console.log(filterValue);
 });
 
 // add new item

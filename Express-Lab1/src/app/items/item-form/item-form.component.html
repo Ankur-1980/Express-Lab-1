@@ -8,7 +8,7 @@
         formControlName="product"
         placeholder="Product Name"
       />
-      <mat-error *ngIf="form.get('product').invalid"
+      <mat-error *ngIf="form?.get('product').invalid"
         >Please enter a product name</mat-error
       >
     </mat-form-field>
@@ -20,7 +20,7 @@
         formControlName="price"
         placeholder="How much?"
       />
-      <mat-error *ngIf="form.get('price').invalid"
+      <mat-error *ngIf="form?.get('price').invalid"
         >Please enter a price</mat-error
       >
     </mat-form-field>
@@ -32,7 +32,7 @@
         formControlName="quantity"
         placeholder="How Many?"
       />
-      <mat-error *ngIf="form.get('quantity').invalid"
+      <mat-error *ngIf="form?.get('quantity').invalid"
         >Please enter a quantity</mat-error
       >
     </mat-form-field>
