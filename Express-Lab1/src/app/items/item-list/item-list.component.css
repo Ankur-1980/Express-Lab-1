@@ -1,0 +1,17 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  gap: 1rem;
+}
+
+.info-text {
+  text-align: center;
+}
+mat-card-actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+a {
+  text-decoration: none;
+}
