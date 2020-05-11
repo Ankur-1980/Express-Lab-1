@@ -38,7 +38,7 @@ export class ItemListComponent implements OnInit, OnDestroy {
   }
 
   filterList() {
-    console.log(this.filterForm.value);
+    this.itemService.filterItems(this.filterForm.value);
   }
 
   ngOnDestroy() {

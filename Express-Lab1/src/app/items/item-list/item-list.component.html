@@ -1,5 +1,5 @@
 <mat-card>
-  <form method="GET" [formGroup]="filterForm" (submit)="filterList()">
+  <form [formGroup]="filterForm" (submit)="filterList()">
     <div class="form-group">
       <label for="maxPrice">Max Price</label>
       <input type="number" formControlName="maxPrice" id="maxPrice" min="1" />

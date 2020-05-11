@@ -26,6 +26,11 @@ router.get("/:id", (req, res) => {
   }
 });
 
+// search filter
+router.get("/search", (req, res, next) => {
+  console.log("query", req.query);
+});
+
 // add new item
 router.post("", (req, res, next) => {
   const newItem = {

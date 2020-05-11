@@ -86,5 +86,12 @@ export class ItemService {
       });
   }
 
-  filterItems() {}
+  filterItems(filterForm) {
+    this.http
+      .get(`http://localhost:3000/api/cart-items/search?${filterForm}`)
+      .subscribe((response) => {
+        console.log(response);
+      });
+    console.log(filterForm);
+  }
 }
