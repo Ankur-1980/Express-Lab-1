@@ -14,6 +14,8 @@ export class ItemListComponent implements OnInit, OnDestroy {
   private itemsSub: Subscription;
   filterForm: FormGroup;
 
+  perPage = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
   constructor(public itemService: ItemService) {}
 
   ngOnInit(): void {
@@ -36,7 +38,7 @@ export class ItemListComponent implements OnInit, OnDestroy {
   }
 
   filterList() {
-    alert('working?');
+    console.log(this.filterForm.value);
   }
 
   ngOnDestroy() {

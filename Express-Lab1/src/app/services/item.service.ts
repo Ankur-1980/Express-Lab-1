@@ -50,8 +50,8 @@ export class ItemService {
     };
     this.http
       .post<{ message: string }>('http://localhost:3000/api/cart-items', item)
-      .subscribe((responseData) => {
-        console.log(responseData.message);
+      .subscribe((response) => {
+        console.log(response.message);
         this.items.push(item);
         this.itemsUpdated.next([...this.items]);
         this.router.navigate(['/']);
