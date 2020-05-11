@@ -85,4 +85,6 @@ export class ItemService {
         this.itemsUpdated.next([...this.items]);
       });
   }
+
+  filterItems() {}
 }
