@@ -9,9 +9,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularMaterialModule } from './angular-material.module';
 import { ItemsModule } from './items/items.module';
 import { ItemDetailsComponent } from './components/item-details/item-details.component';
+import { ListFilterComponent } from './list-filter/list-filter.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ItemDetailsComponent],
+  declarations: [AppComponent, HeaderComponent, ItemDetailsComponent, ListFilterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
