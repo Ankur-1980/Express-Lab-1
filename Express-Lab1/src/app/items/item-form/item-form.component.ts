@@ -38,11 +38,13 @@ export class ItemFormComponent implements OnInit {
             price: itemData.price,
             quantity: itemData.quantity,
           };
-          this.form.setValue({
-            product: this.item.product,
-            price: this.item.price,
-            quantity: this.item.quantity,
-          });
+          if (itemData) {
+            this.form.setValue({
+              product: itemData[0].product,
+              price: itemData[0].price,
+              quantity: itemData[0].quantity,
+            });
+          }
         });
       } else {
         this.mode = 'create';

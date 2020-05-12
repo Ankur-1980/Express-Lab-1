@@ -86,12 +86,13 @@ export class ItemService {
       });
   }
 
-  filterItems(filterForm) {
+  filterItems({ prefix, pageSize, maxPrice }) {
     this.http
-      .get(`http://localhost:3000/api/cart-items/`)
+      .get(`http://localhost:3000/api/cart-items/`, {
+        params: { prefix, pageSize, maxPrice },
+      })
       .subscribe((response) => {
         console.log(response);
       });
-    console.log(filterForm);
   }
 }
