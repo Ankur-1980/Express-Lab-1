@@ -3,10 +3,30 @@ const items = require("./items");
 
 // get list of items
 router.get("", (req, res, next) => {
-  res.status(200).json({
-    message: "Items fetched successfully",
-    items: items,
-  });
+  const { maxPrice, prefix, pageSize } = req.query;
+  let tempArray;
+  let cached = {};
+  if (maxPrice) {
+    tempArray = items.filter((item) => item.price <= parseInt(maxPrice));
+    cached["maxPrice"] = tempArray.sort((a, b) => a - b);
+  }
+
+  if (pageSize) {
+    tempArray = cached["maxPrice"]
+      ? cached["maxPrice"].slice(0, parseInt(pageSize))
+      : items.slice(0, parseInt(pageSize));
+    cached["pageSize"] = tempArray.sort((a, b) => a - b);
+  }
+
+  if (prefix) {
+    tempArray = cached["pageSize"]
+      ? cached["pageSize"].filter((item) => item.product.startsWith(prefix))
+      : tempArray.filter((item) => item.product.startsWith(prefix));
+  }
+
+  res
+    .status(200)
+    .json({ message: "Items Fetched", items: tempArray ? tempArray : items });
 });
 
 // get individual item
