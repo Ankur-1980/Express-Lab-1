@@ -21,19 +21,12 @@ router.get("", (req, res, next) => {
   if (prefix) {
     tempArray = cached["pageSize"]
       ? cached["pageSize"].filter((item) => item.product.startsWith(prefix))
-<<<<<<< HEAD
       : tempArray.filter((item) => item.product.startsWith(prefix));
   }
 
   res
     .status(200)
     .json({ message: "Items Fetched", items: tempArray ? tempArray : items });
-=======
-      : items.filter((item) => item.product.startsWith(prefix));
-  }
-
-  res.status(200).json(tempArray ? tempArray : items);
->>>>>>> master
 });
 
 // get individual item
