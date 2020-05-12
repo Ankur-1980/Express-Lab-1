@@ -18,8 +18,8 @@ export class ItemService {
       .get<{ message: string; items: Item[] }>(
         'http://localhost:3000/api/cart-items'
       )
-      .subscribe((itemData) => {
-        this.items = itemData.items;
+      .subscribe((responseData) => {
+        this.items = responseData.items;
         this.itemsUpdated.next([...this.items]);
       });
   }
@@ -88,7 +88,7 @@ export class ItemService {
 
   filterItems(filterForm) {
     this.http
-      .get(`http://localhost:3000/api/cart-items/search`)
+      .get(`http://localhost:3000/api/cart-items/`)
       .subscribe((response) => {
         console.log(response);
       });
