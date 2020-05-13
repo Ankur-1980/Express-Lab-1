@@ -3,8 +3,6 @@ const items = require("./items");
 
 // get list of items
 router.get("", (req, res, next) => {
-  console.log("Backend", req.query);
-
   const { maxPrice, prefix, pageSize } = req.query;
   let tempArray;
   let cached = {};
@@ -46,18 +44,6 @@ router.get("/:id", (req, res) => {
       .status(404)
       .json({ message: `No item with the id of ${req.params.id}` });
   }
-});
-
-// search filter
-router.get("/search", (req, res, next) => {
-  console.log("query", req.query);
-  const filterValue = {
-    prefix: req.query.prefix,
-    pageSize: req.query.pageSize,
-    maxPrice: req.query.maxPrice,
-  };
-
-  console.log(filterValue);
 });
 
 // add new item
