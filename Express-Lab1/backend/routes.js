@@ -3,6 +3,8 @@ const items = require("./items");
 
 // get list of items
 router.get("", (req, res, next) => {
+  console.log("req.query", req.query);
+
   const { maxPrice, prefix, pageSize } = req.query;
   let tempArray;
   let cached = {};

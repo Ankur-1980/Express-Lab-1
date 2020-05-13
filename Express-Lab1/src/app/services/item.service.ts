@@ -18,8 +18,8 @@ export class ItemService {
       .get<{ message: string; items: Item[] }>(
         'http://localhost:3000/api/cart-items'
       )
-      .subscribe((responseData) => {
-        this.items = responseData.items;
+      .subscribe((response) => {
+        this.items = response.items;
         this.itemsUpdated.next([...this.items]);
       });
   }
@@ -88,9 +88,12 @@ export class ItemService {
 
   filterItems({ prefix, pageSize, maxPrice }) {
     this.http
-      .get(`http://localhost:3000/api/cart-items/`, {
-        params: { prefix, pageSize, maxPrice },
-      })
+      .get<{ message: string; items: Item[] }>(
+        `http://localhost:3000/api/cart-items`,
+        {
+          params: { prefix, pageSize, maxPrice },
+        }
+      )
       .subscribe((response) => {
         console.log(response);
       });
