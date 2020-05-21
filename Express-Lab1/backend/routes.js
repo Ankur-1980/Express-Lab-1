@@ -2,14 +2,18 @@ const router = require("express").Router();
 const database = require("./connection");
 
 router.get("/cart-items", function (req, res) {
-  database.query("SELECT * FROM shopping_cart ORDER BY id").then((response) => {
-    res.status(200).json({ message: "Items Fetched", items: response.rows });
-  });
+  database
+    .query("SELECT * FROM shopping_cart ORDER BY product_id")
+    .then((response) => {
+      res.status(200).json({ message: "Items Fetched", items: response.rows });
+    });
 });
 
 router.get("/cart-items/:id", (req, res) => {
   database
-    .query("SELECT * FROM shopping_cart WHERE id = $1::int", [req.params.id])
+    .query("SELECT * FROM shopping_cart WHERE product_id = $1::int", [
+      req.params.id,
+    ])
     .then((response) => {
       if (response.rows.length !== 0) {
         res.status(200).json(response.rows[0]);
@@ -29,7 +33,7 @@ router.post("/cart-items", (req, res) => {
     )
     .then(() => {
       database
-        .query("SELECT * FROM shopping_cart ORDER BY id")
+        .query("SELECT * FROM shopping_cart ORDER BY product_id")
         .then((response) => {
           res.json(response.rows);
         });
@@ -39,7 +43,7 @@ router.post("/cart-items", (req, res) => {
 router.put("/cart-items/:id", (req, res) => {
   database
     .query(
-      `UPDATE shopping_cart SET product=$2::text, price=$3::smallint, quantity=$4::smallint WHERE id =$1::INT`,
+      `UPDATE shopping_cart SET product=$2::text, price=$3::smallint, quantity=$4::smallint WHERE product_id =$1::INT`,
       [req.params.id, req.body.product, req.body.price, req.body.quantity]
     )
     .then((response) => {
@@ -49,7 +53,9 @@ router.put("/cart-items/:id", (req, res) => {
 
 router.delete("/cart-items/:id", (req, res) => {
   database
-    .query(`DELETE FROM shopping_cart WHERE id=$1::INT`, [req.params.id])
+    .query(`DELETE FROM shopping_cart WHERE product_id=$1::INT`, [
+      req.params.id,
+    ])
     .then((response) => {
       res.json(response.rows);
     });
