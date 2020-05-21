@@ -16,7 +16,7 @@ export class ItemService {
   getItems() {
     this.http
       .get<{ message: string; items: Item[] }>(
-        'http://localhost:3000/api/cart-items'
+        'http://localhost:3000/cart-items'
       )
       .subscribe((response) => {
         this.items = response.items;
@@ -34,7 +34,7 @@ export class ItemService {
       product: string;
       price: number;
       quantity: number;
-    }>(`http://localhost:3000/api/cart-items/${id}`);
+    }>(`http://localhost:3000/cart-items/${id}`);
   }
 
   addItem(product: string, price: number, quantity: number) {
@@ -48,8 +48,10 @@ export class ItemService {
       price: price,
       quantity: quantity,
     };
+    console.log(item);
+
     this.http
-      .post<{ message: string }>('http://localhost:3000/api/cart-items', item)
+      .post<{ message: string }>('http://localhost:3000/cart-items', item)
       .subscribe((response) => {
         console.log(response.message);
         this.items.push(item);
@@ -66,7 +68,7 @@ export class ItemService {
       quantity: quantity,
     };
     this.http
-      .put(`http://localhost:3000/api/cart-items/${id}`, item)
+      .put(`http://localhost:3000/cart-items/${id}`, item)
       .subscribe((response) => {
         const updatedItems = [...this.items];
         const oldItemIndex = updatedItems.findIndex((p) => p.id === item.id);
@@ -79,7 +81,7 @@ export class ItemService {
 
   deleteItem(itemId) {
     this.http
-      .delete(`http://localhost:3000/api/cart-items/${itemId}`)
+      .delete(`http://localhost:3000/cart-items/${itemId}`)
       .subscribe(() => {
         this.items = this.items.filter((item) => item.id !== itemId);
         this.itemsUpdated.next([...this.items]);
@@ -89,7 +91,7 @@ export class ItemService {
   filterItems({ prefix, pageSize, maxPrice }) {
     this.http
       .get<{ message: string; items: Item[] }>(
-        `http://localhost:3000/api/cart-items`,
+        `http://localhost:3000/cart-items`,
         {
           params: { prefix, pageSize, maxPrice },
         }

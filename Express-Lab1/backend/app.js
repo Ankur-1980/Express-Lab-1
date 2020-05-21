@@ -18,5 +18,5 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api/cart-items", itemsRoutes);
+app.use("/", itemsRoutes);
 module.exports = app;

@@ -1,4 +1,4 @@
-<mat-card>
+<!-- <mat-card>
   <form [formGroup]="filterForm" (submit)="filterList()">
     <div class="form-group">
       <label for="maxPrice">Max Price</label>
@@ -23,13 +23,14 @@
       Filter List
     </button>
   </form>
-</mat-card>
+</mat-card> -->
 
 <div class="container mt-4" *ngIf="items.length > 0">
   <mat-card *ngFor="let item of items">
     <mat-card-header>
       <mat-card-title>
         {{ item.product }}
+        {{ item.id }}
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>

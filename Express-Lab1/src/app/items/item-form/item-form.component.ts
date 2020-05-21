@@ -32,6 +32,7 @@ export class ItemFormComponent implements OnInit {
         this.mode = 'edit';
         this.itemId = paramMap.get('itemId');
         this.itemService.getItem(this.itemId).subscribe((itemData) => {
+          console.log(itemData);
           this.item = {
             id: itemData.id,
             product: itemData.product,
@@ -40,9 +41,9 @@ export class ItemFormComponent implements OnInit {
           };
           if (itemData) {
             this.form.setValue({
-              product: itemData[0].product,
-              price: itemData[0].price,
-              quantity: itemData[0].quantity,
+              product: itemData.product,
+              price: itemData.price,
+              quantity: itemData.quantity,
             });
           }
         });
