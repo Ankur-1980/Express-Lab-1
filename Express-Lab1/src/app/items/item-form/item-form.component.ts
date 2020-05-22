@@ -34,7 +34,7 @@ export class ItemFormComponent implements OnInit {
         this.itemService.getItem(this.itemId).subscribe((itemData) => {
           console.log(itemData);
           this.item = {
-            id: itemData.id,
+            product_id: itemData.id,
             product: itemData.product,
             price: itemData.price,
             quantity: itemData.quantity,

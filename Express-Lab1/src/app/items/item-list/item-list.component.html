@@ -30,6 +30,7 @@
     <mat-card-header>
       <mat-card-title>
         {{ item.product }}
+        {{ item.product_id }}
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
@@ -37,13 +38,23 @@
       <p>Quantity: {{ item.quantity }}</p>
     </mat-card-content>
     <mat-card-actions>
-      <a mat-raised-button color="primary" [routerLink]="['/edit', item.id]"
+      <a
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/edit', item.product_id]"
         >Edit</a
       >
-      <a mat-raised-button color="accent" routerLink="details/{{ item.id }}"
+      <a
+        mat-raised-button
+        color="accent"
+        routerLink="details/{{ item.product_id }}"
         >Details</a
       >
-      <button mat-raised-button color="warn" (click)="onDelete(item.id)">
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="onDelete(item.product_id)"
+      >
         Delete
       </button>
     </mat-card-actions>

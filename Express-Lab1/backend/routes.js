@@ -28,7 +28,7 @@ router.get("/cart-items/:id", (req, res) => {
 router.post("/cart-items", (req, res) => {
   database
     .query(
-      "INSERT INTO shopping_cart (product, price, quantity) VALUES($1::text, $2::smallint, $3::smallint)",
+      "INSERT INTO shopping_cart (product, price, quantity) VALUES($1::text, $2::int, $3::int)",
       [req.body.product, req.body.price, req.body.quantity]
     )
     .then(() => {
